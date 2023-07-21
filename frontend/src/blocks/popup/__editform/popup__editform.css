@@ -1,0 +1,15 @@
+.popup__editform {
+  color: black;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  padding: 27px 0 0 0;
+  margin: 0 auto 0 auto;
+}
+
+@media screen and (max-width: 880px) {
+  .popup__editform {
+    padding-top: 31px;
+  }
+}

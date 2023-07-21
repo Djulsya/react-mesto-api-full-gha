@@ -1,0 +1,28 @@
+.header__out {
+  display: flex;
+  position: absolute;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-decoration: none;
+  text-align: right;
+  color: #a9a9a9;
+  background-color: black;
+  padding: 0;
+  margin-top: -25px;
+  border: none;
+}
+
+@media screen and (max-width: 880px) {
+  .header__out {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-weight: 300;
+    font-size: 15px;
+    /* margin-bottom: 50px; */
+  }
+}

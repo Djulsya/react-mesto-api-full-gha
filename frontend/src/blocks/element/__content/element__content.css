@@ -1,0 +1,7 @@
+.element__content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 246px;
+  padding: 23px 15px 32px 21px;
+}

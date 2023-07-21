@@ -1,0 +1,14 @@
+.popup__photo-info {
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  max-width: 291px;
+  max-height: 12px;
+  margin: 10px 0 0 0;
+  position: relative;
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 0;
+}

@@ -1,0 +1,9 @@
+.element__button-like {
+  background-color: white;
+  border-style: none;
+  padding: 0;
+  background-image: url(../../../images/like.svg);
+  min-width: 22px;
+  height: 19px;
+  /* cursor: pointer; */
+}

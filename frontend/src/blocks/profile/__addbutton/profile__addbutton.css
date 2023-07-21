@@ -1,0 +1,18 @@
+.profile__addbutton {
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  border-style: none;
+  background-color: black;
+  margin: 0;
+  background-image: url(../../../images/addbutton.svg);
+  /* cursor: pointer; */
+  object-fit: cover;
+}
+
+@media screen and (max-width: 880px) {
+  .profile__addbutton {
+    width: 282px;
+    background-image: url(../../../images/addbuttonmobile.svg);
+  }
+}

@@ -1,0 +1,15 @@
+.authorization__savebutton {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  width: 358px;
+  height: 50px;
+  border: none;
+  background-color: white;
+  color: black;
+  border-radius: 2px;
+  margin: 186px 0 0 0;
+  padding: 0;
+}

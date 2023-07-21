@@ -1,0 +1,26 @@
+.profile__avatar-editbutton {
+  position: absolute;
+  height: 120px;
+  width: 120px;
+  border-radius: 50%;
+  display: flex;
+  /* align-items: center; */
+  background-color: rgb(0, 0, 0);
+  border: none;
+  /* opacity: 0; */
+  /* cursor: pointer; */
+}
+
+.profile__avatar-editbutton:hover {
+  background-image: url(../../../images/edit_pencil.svg);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  background-size: 26px 26px;
+}
+
+
+/* @media screen and (max-width: 880px) {
+  .profile__avatar-editbutton {
+     margin-top: -116px; 
+  }
+} */

@@ -1,0 +1,15 @@
+.header__link {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  /* position: absolute;  */
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-decoration: none;
+  text-align: right;
+  color: white;
+  padding: 0;
+  margin-top: -20px;
+}

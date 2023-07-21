@@ -1,0 +1,21 @@
+.album__elements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  max-width: 880px;
+  row-gap: 20px;
+  column-gap: 17px;
+  margin: 0 auto 0 auto;
+}
+
+@media screen and (max-width: 980px) {
+  .album__elements {
+    column-gap: 35px;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .album__elements {
+    max-width: 320px;
+    padding: 0 19px 0 19px;
+  }
+}

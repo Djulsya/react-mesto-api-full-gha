@@ -1,0 +1,9 @@
+.popup__savebutton-deletephoto {
+  width: 358px;
+}
+
+@media screen and (max-width: 880px) {
+  .popup__savebutton-deletephoto {
+    width: 200px;
+  }
+}

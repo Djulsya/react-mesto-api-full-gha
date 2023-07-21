@@ -1,0 +1,14 @@
+.popup__container-openphoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  position: relative;
+  padding: 0;
+}
+
+@media screen and (max-width: 880px) {
+  .popup__container-openphoto {
+    max-width: 280px;
+  }
+}
