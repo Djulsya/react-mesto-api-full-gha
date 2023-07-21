@@ -2,18 +2,16 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-// const { requestLogger, errorLogger } = require('./middlewares/logger'); // 15ПР
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 
 const { PORT = 3000 } = process.env;
 
 const app = express();
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
-  useNewUrlParser: true,
-});
+const urlDb = 'mongodb://127.0.0.1:27017/mestodb';
 
-// app.use(requestLogger); // 15ПР
+app.use(requestLogger);
 app.use(cookieParser());
 app.use(express.json());
 
@@ -28,8 +26,19 @@ const handleError = ((err, req, res, next) => {
 });
 
 app.use(routes);
-// app.use(errorLogger); // 15ПР
+app.use(errorLogger);
 app.use(errors());
 app.use(handleError);
 
-app.listen(PORT);
+const start = async () => {
+  try {
+    await mongoose.connect(urlDb, {});
+    app.listen(PORT, () => {
+      console.log(`App listening on port ${PORT}`);
+    });
+  } catch (err) {
+    console.log(err.message);
+  }
+};
+
+start();
