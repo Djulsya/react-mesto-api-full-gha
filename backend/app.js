@@ -5,11 +5,9 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, urlMongo = 'mongodb://localhost:27017/mestodb' } = process.env;
 
 const app = express();
-
-const urlDb = 'mongodb://127.0.0.1:27017/mestodb';
 
 app.use(requestLogger);
 app.use(cookieParser());
@@ -32,7 +30,7 @@ app.use(handleError);
 
 const start = async () => {
   try {
-    await mongoose.connect(urlDb, {});
+    await mongoose.connect(urlMongo, {});
     app.listen(PORT, () => {
       console.log(`App listening on port ${PORT}`);
     });
