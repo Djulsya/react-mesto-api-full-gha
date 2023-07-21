@@ -5,7 +5,11 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const routes = require('./routes/index');
 
-const { PORT = 3000, urlMongo = 'mongodb://localhost:27017/mestodb' } = process.env;
+const { PORT = 3000, urlMongo = 'mongodb://localhost:27017' } = process.env;
+
+mongoose.connect(`${urlMongo}/mestodb`, {
+  useNewUrlParser: true
+}).then(() => console.log('связь есть'));
 
 const app = express();
 
