@@ -47,7 +47,7 @@ const handleError = ((err, req, res, next) => {
   next();
 });
 
-app.use(routes);
+app.use('/api', routes);
 app.use(errorLogger);
 app.use(errors());
 app.use(handleError);

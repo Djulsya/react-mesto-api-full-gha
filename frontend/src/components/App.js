@@ -183,7 +183,7 @@ function App() {
         />
 
         <Routes>
-          <Route element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} />
+          <Route element={isLoggedIn ? <Navigate to="/" /> : <Navigate to="/sign-in" />} /> 
           <Route path="/sign-in" element={<Login onLogin={handleLoginSubmit} />} />
           <Route path="/sign-up" element={<Register onRegister={handleRegisterSubmit} />} />
           <Route path="/" element={<Main
