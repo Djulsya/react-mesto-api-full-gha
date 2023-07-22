@@ -5,8 +5,7 @@
   "scripts": {
     "lint": "npx eslint .",
     "start": "node app.js",
-    "dev": "nodemon app.js",
-    "predev": "fuser -k 3000/tcp && echo 'Terminated' || echo 'Nothing was running on the 3000'"
+    "dev": "nodemon app.js"
   },
   "devDependencies": {
     "eslint": "^8.44.0",
