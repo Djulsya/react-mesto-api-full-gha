@@ -6,7 +6,6 @@
   background-color: black;
   margin: 0;
   background-image: url(../../../images/addbutton.svg);
-  /* cursor: pointer; */
   object-fit: cover;
 }
 

@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 import '../index.css';
 import React from 'react';
 import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
-//import PopupWithForm from './PopupWithForm.js';
 import ImagePopup from './ImagePopup.js';
 import { defaultCurrentUser, CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api.js';
@@ -16,7 +16,6 @@ import Login from './Login';
 import authorization from '../utils/Authorization.js';
 import Register from './Register.js';
 import InfoTooltip from './InfoTooltip';
-
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
@@ -56,7 +55,7 @@ function App() {
     Promise.all([api.getInfo(), api.getInitialCards()])
       .then(([user, elements]) => {
         setCurrentUser(user)
-        setElements(elements);
+        setElements(elements.reverse());
       })
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
@@ -65,7 +64,7 @@ function App() {
     [])
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newElement) => {
         setElements((elements) => elements.map((c) =>
@@ -122,7 +121,7 @@ function App() {
 
   function handleSingOut() {
     setIsLoggedIn(false);
-    localStorage.removeItem("jwt");
+    // localStorage.removeItem("jwt");
     navigate("/sign-in");
     setEmail("");
   }
@@ -131,8 +130,8 @@ function App() {
     authorization
       .login(email, password)
       .then((res) => {
-        localStorage.setItem("jwt", res.token)
-        setEmail(email)
+        // localStorage.setItem("jwt", res.token)
+        setEmail(res.email)
         setIsLoggedIn(true)
         navigate("/")
       })
@@ -157,20 +156,20 @@ function App() {
   }
 
   React.useEffect(() => {
-    const jwt = localStorage.getItem("jwt")
-    if (jwt) {
-      authorization
-        .checkToken(jwt)
-        .then((res) => {
-          setEmail(res.data.email)
+    // const jwt = localStorage.getItem("jwt")
+    authorization
+    .checkToken()
+      .then((res) => {
+        if (res.ok) {
+          setEmail(res.email);
           setIsLoggedIn(true)
           navigate("/")
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка: ${err}`);
-        })
-    }
-  }, [navigate])
+        }
+      })
+      .catch((err) => { 
+        console.log(`Произошла ошибка: ${ err }`); 
+      });
+  }, [navigate]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -196,9 +195,9 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             onAddPlace={handleAddPlaceClick} />} />
-          <Route element={<ProtectedRoute
+           <Route element={<ProtectedRoute
             isLoggedIn={isLoggedIn} />} />
-        </Routes>
+        </Routes> 
 
         <EditProfilePopup
           popupOpen={isEditProfilePopupOpen}

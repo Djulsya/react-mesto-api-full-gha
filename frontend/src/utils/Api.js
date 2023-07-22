@@ -14,6 +14,7 @@ class Api {
   getInfo() {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._checkError(res));
   };
@@ -21,6 +22,7 @@ class Api {
   updateUserInfo(data) {
     return fetch(`${this._url}/users/me`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => this._checkError(res));
@@ -29,6 +31,7 @@ class Api {
   updateUserAvatar(data) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => this._checkError(res));
@@ -37,6 +40,7 @@ class Api {
   getInitialCards() {
     return fetch(`${this._url}/cards`, {
       method: "GET",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._checkError(res));
   };
@@ -44,6 +48,7 @@ class Api {
   createCard(data) {
     return fetch(`${this._url}/cards`, {
       method: "POST",
+      credentials: 'include',
       headers: this._headers,
       body: JSON.stringify(data),
     }).then((res) => this._checkError(res));
@@ -52,6 +57,7 @@ class Api {
   deleteCard(cardId) {
     return fetch(`${this._url}/cards/${cardId}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: this._headers,
     }).then((res) => this._checkError(res));
   };
@@ -61,6 +67,7 @@ class Api {
       return fetch(`${this._url}/cards/${cardId}/likes`,
         {
           method: 'PUT',
+          credentials: 'include',
           headers: this._headers,
         })
         .then((res) => this._checkError(res));
@@ -68,29 +75,16 @@ class Api {
       return fetch(`${this._url}/cards/${cardId}/likes`,
         {
           method: 'DELETE',
+          credentials: 'include',
           headers: this._headers,
         })
         .then((res) => this._checkError(res));
     }
   }
-
-  // likeCard(cardId) {
-  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
-  //     method: "PUT",
-  //     headers: this._headers,
-  //   }).then((res) => this._checkError(res));
-  // };
-
-  // unlikeCard(cardId) {
-  //   return fetch(`${this._url}/cards/${cardId}/likes`, {
-  //     method: "DELETE",
-  //     headers: this._headers,
-  //   }).then((res) => this._checkError(res));
-  // };
-}
+};
 
 const apiConfig = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-63',
+  url: 'http://localhost:4000',
   headers: {
     authorization: '813a52a6-fb30-422d-b79d-9de8b1db1ade',
     'Content-Type': 'application/json'

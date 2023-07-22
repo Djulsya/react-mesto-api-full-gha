@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import logo from '../images/headerlogo.svg';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';

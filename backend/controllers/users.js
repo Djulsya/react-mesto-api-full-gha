@@ -87,6 +87,7 @@ module.exports.login = (req, res, next) => {
           res
             .cookie('jwt', token, {
               httpOnly: true,
+              sameSite: true,
             })
             .send({
               name: user.name, about: user.about, avatar: user.avatar, email,
