@@ -14,4 +14,4 @@ IP 130.193.50.9
 
 Frontend https://jules-bo.nomoredomains.xyz
 
-Backend back.jules-bo.nomoredomains.xyz
+Backend https://back.jules-bo.nomoredomains.xyz
