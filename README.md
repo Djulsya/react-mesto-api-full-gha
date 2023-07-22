@@ -10,8 +10,8 @@
 
 ## Ссылки на проект
 
-IP 51.250.11.24
+IP 130.193.50.9
 
-Frontend https://github.com/Djulsya/react-mesto-auth
+Frontend https://jules-bo.nomoredomains.xyz
 
-Backend https://github.com/Djulsya/express-mesto-gha
+Backend back.jules-bo.nomoredomains.xyz
