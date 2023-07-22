@@ -10,7 +10,7 @@
 
 ## Ссылки на проект
 
-IP 62.84.126.149
+IP 158.160.101.137
 
 Frontend https://jules-bo.nomoredomains.xyz
 
