@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+require('dotenv').config();
 const express = require('express');
 
 const cookieParser = require('cookie-parser');

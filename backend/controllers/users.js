@@ -6,6 +6,8 @@ const BadRequest = require('../errors/BadRequest');
 const EvilMail = require('../errors/EvilMail');
 const Unauthorized = require('../errors/Unauthorized');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 module.exports.getUsers = (req, res, next) => {
   User
     .find({})
@@ -83,7 +85,11 @@ module.exports.login = (req, res, next) => {
             return next(new Unauthorized('Ошибка авторизации'));
           }
           const token = jwt
-            .sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+            .sign(
+              { _id: user._id },
+              NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+              { expiresIn: '7d' },
+            );
           res
             .cookie('jwt', token, {
               httpOnly: true,
