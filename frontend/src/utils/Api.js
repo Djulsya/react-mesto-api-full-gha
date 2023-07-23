@@ -12,20 +12,24 @@ class Api {
   };
 
   getInfo() {
-    return fetch(`${this._url}/users/me`, {
-      method: "GET",
-      credentials: 'include',
-      headers: this._headers,
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/users/me`,
+      { mode: 'no-cors' },
+      {
+        method: "GET",
+        credentials: 'include',
+        headers: this._headers,
+      }).then((res) => this._checkError(res));
   };
 
   updateUserInfo(data) {
-    return fetch(`${this._url}/users/me`, {
-      method: "PATCH",
-      credentials: 'include',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/users/me`,
+      { mode: 'no-cors' },
+      {
+        method: "PATCH",
+        credentials: 'include',
+        headers: this._headers,
+        body: JSON.stringify(data),
+      }).then((res) => this._checkError(res));
   };
 
   updateUserAvatar(data) {
@@ -55,11 +59,12 @@ class Api {
   };
 
   deleteCard(cardId) {
-    return fetch(`${this._url}/cards/${cardId}`, {
-      method: "DELETE",
-      credentials: 'include',
-      headers: this._headers,
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/cards/${cardId}`,
+      {
+        method: "DELETE",
+        credentials: 'include',
+        headers: this._headers,
+      }).then((res) => this._checkError(res));
   };
 
   changeLikeCardStatus(cardId, isLiked) {
