@@ -84,7 +84,7 @@ class Api {
 };
 
 const apiConfig = {
-  url: 'http://localhost:4000',
+  url: 'https://back.jules-bo.nomoredomains.xyz',
   headers: {
     // authorization: '813a52a6-fb30-422d-b79d-9de8b1db1ade',
     'Content-Type': 'application/json'
