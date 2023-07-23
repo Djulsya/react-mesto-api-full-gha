@@ -7,32 +7,17 @@ const { errors } = require('celebrate');
 const cors = require('cors');
 
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
 const routes = require('./routes/index');
 
 const app = express();
 
-const { PORT = 3000, urlMongo = 'mongodb://0.0.0.0:27017' } = process.env; // urlMongo = 'mongodb://0.0.0.0:27017'
+app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://localhost:3000',
-    'http://back.jules-bo.nomoredomains.xyz',
-    'https://back.jules-bo.nomoredomains.xyz',
-    'http://jules-bo.nomoredomains.xyz',
-    'https://jules-bo.nomoredomains.xyz',
-  ],
-  credentials: true,
-}));
+const { PORT = 4000, urlMongo = 'mongodb://0.0.0.0:27017' } = process.env;
 
 mongoose.connect(`${urlMongo}/mestodb`, {
   useNewUrlParser: true,
 });
-
-// mongoose.connect('mongodb://localhost:27017/mestodb', {
-//   useUnifiedTopology: true,
-// });
 
 app.use(requestLogger);
 app.use(cookieParser());
@@ -48,7 +33,7 @@ const handleError = ((err, req, res, next) => {
   next();
 });
 
-app.use('/api', routes);
+app.use(routes);
 app.use(errorLogger);
 app.use(errors());
 app.use(handleError);
