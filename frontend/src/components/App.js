@@ -51,20 +51,6 @@ function App() {
     setToolTipPopupOpen(false);
   }
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-    Promise.all([api.getInfo(), api.getInitialCards()])
-      .then(([user, elements]) => {
-        setCurrentUser(user)
-        setElements(elements.reverse());
-      })
-      .catch((err) => {
-        console.log(`Произошла ошибка: ${err}`);
-      })
-    }
-  },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [])
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i === currentUser._id);
@@ -167,9 +153,7 @@ function App() {
           setEmail(res.email);
           setIsLoggedIn(true)
           navigate("/")
-        } else {
-          setIsLoggedIn(false);
-        }
+        } 
       })
       .catch((err) => { 
         setIsLoggedIn(false);
