@@ -144,23 +144,28 @@ function App() {
       })
   }
 
-  React.useEffect(() => {
+  const token = () => {
     // const jwt = localStorage.getItem("jwt")
     authorization
-    .checkToken()
+      .checkToken()
       .then((res) => {
         if (data) {
-          setEmail(res.email);
+          setEmail(res.data.email);
           setIsLoggedIn(true)
           navigate("/")
-        } 
+        }
       })
-      .catch((err) => { 
-        setIsLoggedIn(false);
-        console.log(`Произошла ошибка: ${ err }`); 
+      .catch((err) => {
+        // setIsLoggedIn(false);
+        console.log(`Произошла ошибка: ${err}`);
       });
-  });
+  };
 
+  useEffect(() => {
+    token();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
@@ -185,9 +190,9 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
             onAddPlace={handleAddPlaceClick} />} />
-           <Route element={<ProtectedRoute
+          <Route element={<ProtectedRoute
             isLoggedIn={isLoggedIn} />} />
-        </Routes> 
+        </Routes>
 
         <EditProfilePopup
           popupOpen={isEditProfilePopupOpen}
