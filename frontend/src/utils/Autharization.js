@@ -1,4 +1,4 @@
-class Autharization {
+class Authorization {
   constructor(baseUrl) {
     this._baseUrl = baseUrl;
   }
@@ -50,8 +50,8 @@ class Autharization {
   }
 }
 
-const autharization = new Autharization("https://back.jules-bo.nomoredomains.xyz")
+const authorization = new Authorization("https://back.jules-bo.nomoredomains.xyz")
 
-export default autharization
+export default authorization
 
 
