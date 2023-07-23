@@ -1,4 +1,4 @@
-class Authorization {
+class Autharization {
   constructor(baseUrl) {
     this._baseUrl = baseUrl;
   }
@@ -43,7 +43,6 @@ class Authorization {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        // Authorization: `Bearer ${token}`
       },
       credentials: 'include'
     }).then((res) => this._checkError(res))
@@ -51,8 +50,8 @@ class Authorization {
   }
 }
 
-const authorization = new Authorization("https://back.jules-bo.nomoredomains.xyz")
+const autharization = new Autharization("https://back.jules-bo.nomoredomains.xyz")
 
-export default authorization
+export default autharization
 
 

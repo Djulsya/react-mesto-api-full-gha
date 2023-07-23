@@ -13,7 +13,6 @@ class Api {
 
   getInfo() {
     return fetch(`${this._url}/users/me`,
-      { mode: 'no-cors' },
       {
         method: "GET",
         credentials: 'include',
@@ -23,7 +22,6 @@ class Api {
 
   updateUserInfo(data) {
     return fetch(`${this._url}/users/me`,
-      { mode: 'no-cors' },
       {
         method: "PATCH",
         credentials: 'include',
@@ -33,29 +31,32 @@ class Api {
   };
 
   updateUserAvatar(data) {
-    return fetch(`${this._url}/users/me/avatar`, {
-      method: "PATCH",
-      credentials: 'include',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/users/me/avatar`,
+      {
+        method: "PATCH",
+        credentials: 'include',
+        headers: this._headers,
+        body: JSON.stringify(data),
+      }).then((res) => this._checkError(res));
   };
 
   getInitialCards() {
-    return fetch(`${this._url}/cards`, {
-      method: "GET",
-      credentials: 'include',
-      headers: this._headers,
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/cards`,
+      {
+        method: "GET",
+        credentials: 'include',
+        headers: this._headers,
+      }).then((res) => this._checkError(res));
   };
 
   createCard(data) {
-    return fetch(`${this._url}/cards`, {
-      method: "POST",
-      credentials: 'include',
-      headers: this._headers,
-      body: JSON.stringify(data),
-    }).then((res) => this._checkError(res));
+    return fetch(`${this._url}/cards`,
+      {
+        method: "POST",
+        credentials: 'include',
+        headers: this._headers,
+        body: JSON.stringify(data),
+      }).then((res) => this._checkError(res));
   };
 
   deleteCard(cardId) {
@@ -91,7 +92,7 @@ class Api {
 const apiConfig = {
   url: 'https://back.jules-bo.nomoredomains.xyz',
   headers: {
-    // authorization: '813a52a6-fb30-422d-b79d-9de8b1db1ade',
+    // autharization: '813a52a6-fb30-422d-b79d-9de8b1db1ade',
     'Content-Type': 'application/json'
   },
 };

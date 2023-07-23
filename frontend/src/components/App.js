@@ -13,7 +13,7 @@ import AddPlacePopup from './AddPlacePopup';
 import { Route, Routes, useNavigate, Navigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import Login from './Login';
-import authorization from '../utils/Authorization.js';
+import autharization from '../utils/Autharization.js';
 import Register from './Register.js';
 import InfoTooltip from './InfoTooltip';
 
@@ -50,6 +50,19 @@ function App() {
     setSelectedCard({});
     setToolTipPopupOpen(false);
   }
+
+  
+  React.useEffect(() => {
+    Promise.all([api.getInfo(), api.getInitialCards()])
+      .then(([user, elements]) => {
+        setCurrentUser(user)
+        setElements(elements.reverse());
+      })
+      .catch((err) => {
+        console.log(`Произошла ошибка: ${err}`);
+      })
+  },
+    [])
 
 
   function handleCardLike(card) {
@@ -116,7 +129,7 @@ function App() {
   }
 
   function handleLoginSubmit(email, password) {
-    authorization
+    autharization
       .login(email, password)
       .then((res) => {
         // localStorage.setItem("jwt", res.token)
@@ -130,7 +143,7 @@ function App() {
   }
 
   function handleRegisterSubmit(email, password) {
-    authorization
+    autharization
       .register(email, password)
       .then(() => {
         setToolTipPopupOpen(true)
@@ -144,28 +157,23 @@ function App() {
       })
   }
 
-  const token = () => {
+  React.useEffect(() => {
     // const jwt = localStorage.getItem("jwt")
-    authorization
-      .checkToken()
-      .then((res) => {
+    autharization
+    .checkToken()
+      .then(() => {
         if (data) {
-          setEmail(res.data.email);
+          setEmail(res.email);
           setIsLoggedIn(true)
           navigate("/")
-        }
+        } 
       })
-      .catch((err) => {
-        // setIsLoggedIn(false);
-        console.log(`Произошла ошибка: ${err}`);
+      .catch((err) => { 
+        setIsLoggedIn(false);
+        console.log(`Произошла ошибка: ${ err }`); 
       });
-  };
+  });
 
-  useEffect(() => {
-    token();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  
   return (
     <CurrentUserContext.Provider value={currentUser}>
 
