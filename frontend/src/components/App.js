@@ -137,6 +137,7 @@ function App() {
       })
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
+        setToolTipPopupOpen(true)
       })
   }
 
