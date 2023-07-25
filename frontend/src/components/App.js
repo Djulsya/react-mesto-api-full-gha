@@ -51,16 +51,20 @@ function App() {
     setToolTipPopupOpen(false);
   }
 
+
   React.useEffect(() => {
-    Promise.all([api.getInfo(), api.getInitialCards()])
-      .then(([user, elements]) => {
-        setCurrentUser(user)
-        setElements(elements.reverse());
-      })
-      .catch((err) => {
-        console.log(`Произошла ошибка: ${err}`);
-      })
+    if (isLoggedIn) {
+      Promise.all([api.getInitialCards()])
+        .then(([user, elements]) => {
+          setCurrentUser(user)
+          setElements(elements.reverse());
+        })
+        .catch((err) => {
+          console.log(`Произошла ошибка: ${err}`);
+        })
+    }
   },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [])
 
   function handleCardLike(card) {
@@ -157,21 +161,17 @@ function App() {
   }
 
   React.useEffect(() => {
-    // const jwt = localStorage.getItem("jwt")
     authorization
       .checkToken()
-      .then(() => {
-        if (data) {
-          setEmail(res.email);
-          setIsLoggedIn(true)
-          navigate("/")
-        }
+      .then((res) => {
+        setEmail(res.email);
+        setIsLoggedIn(true);
+        navigate("/");
       })
       .catch((err) => {
-        setIsLoggedIn(false);
         console.log(`Произошла ошибка: ${err}`);
-      });
-  });
+      })
+  }, [navigate]);
 
 
   return (
