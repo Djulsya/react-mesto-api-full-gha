@@ -157,3 +157,9 @@ module.exports.getActualUser = (req, res, next) => {
     })
     .catch(next);
 };
+
+module.exports.logout = (req, res) => {
+  res.clearCookie('jwt');
+  res.status(200).send({ message: 'Вы успешно вышли' });
+  res.end();
+};

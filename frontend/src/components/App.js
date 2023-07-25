@@ -149,10 +149,10 @@ function App() {
       .checkToken()
       .then((res) => {
         if (res.email) {
-          setEmail(res.email)
           setIsLoggedIn(true)
+          setEmail(res.email)
           navigate("/")
-          setCurrentUser(res.user)
+          setCurrentUser(res)
         } else {
           setEmail("")
           setIsLoggedIn(false)
@@ -160,7 +160,7 @@ function App() {
           setCurrentUser(defaultCurrentUser)
         }
       })
-      .catch(() => {
+      .catch((err) => {
         setEmail("");
         setIsLoggedIn(true)
         navigate("/sign-in")

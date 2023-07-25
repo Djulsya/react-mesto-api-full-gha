@@ -48,6 +48,13 @@ class Authorization {
     }).then((res) => this._checkError(res))
 
   }
+
+  logout() {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'POST',
+      credentials: 'include',
+    }).then((res) => this._checkError(res))
+  }
 }
 
 const authorization = new Authorization("https://back.jules-bo.nomoredomains.xyz")
