@@ -146,10 +146,6 @@ module.exports.updateUserAvatar = (req, res, next) => {
     });
 };
 
-module.exports.logout = (_, res) => {
-  res.clearCookie('jwt');
-};
-
 module.exports.getActualUser = (req, res, next) => {
   User
     .findById(req.user._id)
