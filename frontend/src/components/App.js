@@ -162,7 +162,7 @@ function App() {
       })
       .catch(() => {
         setEmail("");
-        setIsLoggedIn(false)
+        setIsLoggedIn(true)
         navigate("/sign-in")
         setCurrentUser(defaultCurrentUser)
         console.log(`Произошла ошибка: ${err}`)
