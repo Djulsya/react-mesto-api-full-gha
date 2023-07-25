@@ -37,6 +37,16 @@ class Authorization {
     }).then((res) => this._checkError(res))
   }
 
+  logout () {
+    return fetch(`${this._baseUrl}/signout`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: 'include'
+    }).then((res) => this._checkError(res))
+  }
+
   checkToken() {
     return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
