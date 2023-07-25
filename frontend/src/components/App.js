@@ -160,18 +160,48 @@ function App() {
       })
   }
 
+  // React.useEffect(() => {
+  //   authorization
+  //     .checkToken()
+  //     .then((res) => {
+  //       setEmail(res);
+  //       setIsLoggedIn(true);
+  //       navigate("/");
+  //     })
+  //     .catch((err) => {
+  //       console.log(`Произошла ошибка: ${err}`);
+  //     })
+  // }, [navigate]);
+
+  //   React.useEffect(() => {
+  //    authorization
+  //     .checkToken()
+  //     .then((res) => {
+
+  //          setEmail(res.email);
+  //          setIsLoggedIn(true)
+  //          navigate("/")
+
+  //     })
+  //     .catch((err) => {
+  //        console.log(`Произошла ошибка: ${err}`);
+  //      });
+  //  });
+
   React.useEffect(() => {
     authorization
       .checkToken()
       .then((res) => {
-        setEmail(res.email);
-        setIsLoggedIn(true);
-        navigate("/");
+        if (data) {
+          setEmail(res.data.email);
+          setIsLoggedIn(true)
+          navigate("/")
+        }
       })
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
-      })
-  }, [navigate]);
+      });
+  });
 
 
   return (
