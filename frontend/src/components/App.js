@@ -152,7 +152,7 @@ function App() {
           setEmail(res.email)
           setIsLoggedIn(true)
           navigate("/")
-          setCurrentUser(user)
+          setCurrentUser(res.user)
         } else {
           setEmail("")
           setIsLoggedIn(false)
@@ -160,14 +160,14 @@ function App() {
           setCurrentUser(defaultCurrentUser)
         }
       })
-      .catch((err) => {
-        setEmail("");
-        setIsLoggedIn(false)
+      .catch(() => {
+        setEmail("email");
+        setIsLoggedIn(true)
         navigate("/sign-in")
         setCurrentUser(defaultCurrentUser)
         console.log(`Произошла ошибка: ${err}`)
       })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   React.useEffect(() => {

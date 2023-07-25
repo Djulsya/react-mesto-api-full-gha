@@ -11,17 +11,17 @@ function Main(props) {
       <section className="profile">
         <div className="profile__content">
           <div className="profile__avatar">
-            <button className="profile__avatar-editbutton" type="button" onClick={props.editAvatar}>
-              <img className="profile__avatar link" src={currentUser.avatar} alt="Изображение аватара пользователя" />
+            <button className="profile__avatar-editbutton" type="avatarbutton" onClick={props.editAvatar}>
+               <img className="profile__avatar link" src={currentUser.avatar}  alt="Изображение аватара пользователя" />
             </button>
           </div>
           <div className="profile__info">
             <div className="profile__title">
-              <h1 className="profile__name">{currentUser.name}</h1>
-              <button className="profile__editbutton link" type="button" onClick={props.editProfile}>
+              <h1 className="profile__name">{currentUser.name}</h1>  
+              <button className="profile__editbutton link" type="button" onClick={props.editProfile}> 
               </button>
             </div>
-            <p className="profile__about">{currentUser.about}</p>
+            <p className="profile__about">{currentUser.about}</p>  
           </div>
         </div>
         <button className="profile__addbutton link" type="button" onClick={props.addCard}></button>
