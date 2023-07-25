@@ -10,7 +10,7 @@ const {
 const auth = require('../middlewares/auth');
 
 const {
-  login, createUser, logout,
+  login, createUser,
 } = require('../controllers/users');
 
 router.get('/crash-test', () => {
@@ -21,7 +21,6 @@ router.get('/crash-test', () => {
 
 router.post('/signin', JoiValidateLogin, login);
 router.post('/signup', JoiValidateCreateUser, createUser);
-router.post('/signout', logout);
 
 router.use(auth);
 

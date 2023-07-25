@@ -5,11 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 
 function Header(props) {
   const location = useLocation();
-  function signOut() {
-    localStorage.removeItem('isAuth');
-    props.onLogout()
-    navigate('/sign-in', { replace: true });
-  }
 
   return (
     <header className="header">
@@ -23,7 +18,7 @@ function Header(props) {
           <Link to="/sign-in" className="header__link link">Войти</Link>
         )}
         {location.pathname === '/' && (
-          <Link to="/sign-in" className="header__out link" onClick={() => signOut()}>Выйти</Link>
+          <Link to="/sign-in" className="header__out link" onClick={() => props.signOut()}>Выйти</Link>
         )}
       </div>
     </header>

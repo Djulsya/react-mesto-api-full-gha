@@ -1,7 +1,7 @@
  import React from 'react';
  import Card from './Card.js';
  import { CurrentUserContext } from '../contexts/CurrentUserContext';
- import Header from './Header';
+ // import Header from './Header';
 
  function Main(props) {
 
@@ -9,7 +9,6 @@
 
    return (
      <main>
-       <Header link='/sign-in' linkName='Выйти' email={props.email} onLogout={props.onLogout} />
        <section className="profile">
          <div className="profile__content">
            <div className="profile__avatar">
