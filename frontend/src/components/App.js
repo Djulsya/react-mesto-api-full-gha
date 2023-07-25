@@ -51,22 +51,6 @@ function App() {
     setToolTipPopupOpen(false);
   }
 
-
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      Promise.all([api.getInitialCards()])
-        .then(([user, elements]) => {
-          setCurrentUser(user)
-          setElements(elements.reverse());
-        })
-        .catch((err) => {
-          console.log(`Произошла ошибка: ${err}`);
-        })
-    }
-  },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [])
-
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
@@ -164,17 +148,40 @@ function App() {
     authorization
       .checkToken()
       .then((res) => {
-        if (data) {
-          setEmail(res.email);
+        if (res.email) {
+          setEmail(res.email)
           setIsLoggedIn(true)
           navigate("/")
+          setCurrentUser(user)
+        } else {
+          setEmail("")
+          setIsLoggedIn(false)
+          navigate("/sign-in")
+          setCurrentUser(defaultCurrentUser)
         }
       })
       .catch((err) => {
-        console.log(`Произошла ошибка: ${err}`);
-      });
-  });
+        setEmail("");
+        setIsLoggedIn(false)
+        navigate("/sign-in")
+        setCurrentUser(defaultCurrentUser)
+        console.log(`Произошла ошибка: ${err}`)
+      })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      api.getInitialCards()
+        .then((elements) => {
+          setElements(elements.reverse());
+        })
+        .catch((err) => {
+          setElements([])
+          console.log(`Произошла ошибка: ${err}`)
+        })
+    }
+  }, [isLoggedIn])
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
