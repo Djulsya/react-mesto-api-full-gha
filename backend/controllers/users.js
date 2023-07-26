@@ -42,7 +42,8 @@ module.exports.createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
-  bcrypt.hash(password, 10)
+  bcrypt
+    .hash(password, 10)
     .then((hash) => User.create({
       email,
       name,
@@ -102,6 +103,16 @@ module.exports.login = (req, res, next) => {
         });
     })
     .catch(next);
+};
+
+module.exports.logout = (req, res) => {
+  res
+    .clearCookie('jwt');
+  res
+    .status(200)
+    .send({ message: 'Выход' });
+  res
+    .end();
 };
 
 module.exports.updateUserAbout = (req, res, next) => {

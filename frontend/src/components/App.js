@@ -108,8 +108,13 @@ function App() {
   }
 
   function handleSingOut() {
+    authorization
+    .logout()
+    .then((res) => res)
+      .catch((err) => {
+        console.log(`Произошла ошибка: ${err}`);
+      })
     setIsLoggedIn(false);
-    // localStorage.removeItem("jwt");
     navigate("/sign-in");
     setEmail("");
   }
