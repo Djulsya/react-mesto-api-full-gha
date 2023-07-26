@@ -109,8 +109,8 @@ function App() {
 
   function handleSingOut() {
     authorization
-    .logout()
-    .then((res) => res)
+      .logout()
+      .then((res) => res)
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
       })
@@ -127,10 +127,12 @@ function App() {
         setEmail(res.email)
         setIsLoggedIn(true)
         navigate("/")
+        setIsSuccess(true)
       })
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
         setToolTipPopupOpen(true)
+        setIsSuccess(false)
       })
   }
 
