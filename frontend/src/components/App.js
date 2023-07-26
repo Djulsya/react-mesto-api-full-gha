@@ -110,7 +110,6 @@ function App() {
   function handleSingOut() {
     authorization
       .logout()
-      .then((res) => res)
       .catch((err) => {
         console.log(`Произошла ошибка: ${err}`);
       })
@@ -169,7 +168,7 @@ function App() {
       })
       .catch((err) => {
         setEmail("");
-        setIsLoggedIn(true)
+        setIsLoggedIn(false)
         navigate("/sign-in")
         setCurrentUser(defaultCurrentUser)
         console.log(`Произошла ошибка: ${err}`)
