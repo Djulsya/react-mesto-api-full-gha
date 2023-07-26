@@ -5,7 +5,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import ImagePopup from './ImagePopup.js';
-import { defaultCurrentUser, CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext  } from '../contexts/CurrentUserContext';
 import api from '../utils/Api.js';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -22,7 +22,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-  const [currentUser, setCurrentUser] = React.useState(defaultCurrentUser);
+  const [currentUser, setCurrentUser] = React.useState({});
   const [elements, setElements] = React.useState([]);
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -163,14 +163,14 @@ function App() {
           setEmail("")
           setIsLoggedIn(false)
           navigate("/sign-in")
-          setCurrentUser(defaultCurrentUser)
+          setCurrentUser({})
         }
       })
       .catch((err) => {
         setEmail("");
         setIsLoggedIn(false)
         navigate("/sign-in")
-        setCurrentUser(defaultCurrentUser)
+        setCurrentUser({})
         console.log(`Произошла ошибка: ${err}`)
       })
     // eslint-disable-next-line react-hooks/exhaustive-deps
