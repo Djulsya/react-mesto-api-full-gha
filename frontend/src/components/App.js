@@ -5,7 +5,7 @@ import Header from './Header.js';
 import Main from './Main.js';
 import Footer from './Footer.js';
 import ImagePopup from './ImagePopup.js';
-import { CurrentUserContext  } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import api from '../utils/Api.js';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
@@ -52,8 +52,9 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i === currentUser._id);
-    api.changeLikeCardStatus(card._id, !isLiked)
+    const isLiked = card.likes.some(i => i === currentUser._id); // const isLiked = card.likes.some(i => i === currentUser._id);
+    api
+      .changeLikeCardStatus(card._id, !isLiked)
       .then((newElement) => {
         setElements((elements) => elements.map((c) =>
           (c._id === card._id ? newElement : c)))
@@ -64,7 +65,8 @@ function App() {
   }
 
   function handleCardDelete(card) {
-    api.deleteCard(card._id)
+    api
+      .deleteCard(card._id)
       .then(() => {
         setElements((setDelete) => setDelete.filter((c) =>
           c._id !== card._id && c));
@@ -75,7 +77,8 @@ function App() {
   }
 
   function handleUpdateAvatar(avatarEdit) {
-    api.updateUserAvatar(avatarEdit)
+    api
+      .updateUserAvatar(avatarEdit)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
@@ -86,8 +89,9 @@ function App() {
   }
 
   function handleUpdateUser(userData) {
-    api.updateUserInfo(userData)
-      .then((userDataBase) => {
+    api
+      .updateUserInfo(userData)
+      .then((userDataBase) => { 
         setCurrentUser(userDataBase)
         closeAllPopups()
       })
@@ -97,7 +101,8 @@ function App() {
   };
 
   function handleAddPlaceSubmit(card) {
-    api.createCard(card)
+    api
+      .createCard(card)
       .then((newElement) => {
         setElements([newElement, ...elements]);
         closeAllPopups();
@@ -121,9 +126,10 @@ function App() {
   function handleLoginSubmit(email, password) {
     authorization
       .login(email, password)
-      .then((res) => {
+      .then((data) => {
         // localStorage.setItem("jwt", res.token)
-        setEmail(res.email)
+        setCurrentUser(data)
+        setEmail(data.email)
         setIsLoggedIn(true)
         navigate("/")
         setIsSuccess(true)
@@ -152,10 +158,10 @@ function App() {
 
   React.useEffect(() => {
     authorization
-      .checkToken()
+      .checkToken() 
       .then((res) => {
         if (res.email) {
-          setIsLoggedIn(true)
+          setIsLoggedIn(res)
           setEmail(res.email)
           navigate("/")
           setCurrentUser(res)
@@ -178,7 +184,7 @@ function App() {
 
   React.useEffect(() => {
     if (isLoggedIn) {
-      api.getInitialCards()
+      api.getInitialCards()               
         .then((elements) => {
           setElements(elements.reverse());
         })
@@ -257,5 +263,6 @@ function App() {
     </CurrentUserContext.Provider>
   );
 }
+
 
 export default App

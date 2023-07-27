@@ -99,6 +99,7 @@ module.exports.login = (req, res, next) => {
             })
             .send({
               name: user.name, about: user.about, avatar: user.avatar, email,
+
             });
         });
     })
