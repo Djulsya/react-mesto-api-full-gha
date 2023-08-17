@@ -57,7 +57,7 @@ class Authorization {
   }
 }
 
-const authorization = new Authorization("https://back.jules-bo.nomoredomains.xyz") // https://back.jules-bo.nomoredomains.xyz http://localhost:4000
+const authorization = new Authorization("http://localhost:4000") // https://back.jules-bo.nomoredomains.xyz http://localhost:4000
 
 export default authorization
 
